@@ -1,0 +1,46 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>callAPI</title>
+  </head>
+  <body>
+    <form action="#" id="myForm">
+      <select name="dataType" id="">
+        <option value="flw" selected>本港地區天氣預報</option>
+        <option value="fnd">九天天氣預報</option>
+        <option value="rhrread">本港地區天氣報告</option>
+        <option value="warnsum">天氣警告一覽</option>
+        <option value="warningInfo">詳細天氣警告資訊</option>
+        <option value="swt">特別天氣提示</option>
+      </select>
+      <br />
+      <select name="lang" id="">
+        <option value="en" selected>英文</option>
+        <option value="tc">繁體中文</option>
+        <option value="sc">簡體中文</option>
+      </select>
+      <br />
+      <input type="submit" id="myForm_submit" value="提交" />
+    </form>
+    <div id="content"></div>
+    <script>
+      document
+        .getElementById("myForm_submit")
+        .addEventListener("click", function (event) {
+          event.preventDefault();
+          fetch("https://data.weather.gov.hk/weatherAPI/opendata/weather.php", {
+            body: new FormData(document.getElementById("myForm")),
+            method: "post",
+          })
+            .then((response) => {
+              return response.json();
+            })
+            .then((myJson) => {
+              console.log(myJson);
+            });
+        });
+    </script>
+  </body>
+</html>
