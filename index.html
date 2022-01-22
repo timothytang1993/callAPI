@@ -4,27 +4,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>callAPI</title>
+    <script src="https://unpkg.com/vue@3.0.2"></script>
   </head>
   <body>
-    <form action="#" id="myForm">
-      <select name="dataType" id="">
-        <option value="flw" selected>本港地區天氣預報</option>
-        <option value="fnd">九天天氣預報</option>
-        <option value="rhrread">本港地區天氣報告</option>
-        <option value="warnsum">天氣警告一覽</option>
-        <option value="warningInfo">詳細天氣警告資訊</option>
-        <option value="swt">特別天氣提示</option>
-      </select>
-      <br />
-      <select name="lang" id="">
-        <option value="en" selected>英文</option>
-        <option value="tc">繁體中文</option>
-        <option value="sc">簡體中文</option>
-      </select>
-      <br />
-      <input type="submit" id="myForm_submit" value="提交" />
-    </form>
-    <div id="content"></div>
+    <div id="app">
+      <form action="#" id="myForm">
+        <select name="dataType" id="">
+          <option value="flw" selected>{{ weatherPredict }}</option>
+          <option value="fnd">{{ weatherPredictIn9 }}</option>
+          <option value="rhrread">{{ weatherReport }}</option>
+          <option value="warnsum">{{ wealtherWarning }}</option>
+          <option value="warningInfo">{{ warningInfo }}</option>
+          <option value="swt">{{ specialWealtherTips }}</option>
+        </select>
+        <br />
+        <select name="lang" id="">
+          <option value="en" selected>{{ eng }}</option>
+          <option value="tc">{{ tch }}</option>
+          <option value="sc">{{ sch }}</option>
+        </select>
+        <br />
+        <button type="submit" id="myForm_submit">{{ submit }}</button>
+      </form>
+      <button @click="translateToEng">{{ eng }}</button>
+      <button @click="translateToTch">{{ tch }}</button>
+      <button @click="translateToSch">{{ sch }}</button>
+      <div id="content"></div>
+    </div>
+    <script src="app.js"></script>
     <script>
       document
         .getElementById("myForm_submit")
